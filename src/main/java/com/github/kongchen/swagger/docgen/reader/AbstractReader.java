@@ -365,6 +365,7 @@ public abstract class AbstractReader {
         validParameterAnnotations.add(RequestBody.class);
         validParameterAnnotations.add(PathVariable.class);
         validParameterAnnotations.add(RequestHeader.class);
+        validParameterAnnotations.add(MatrixParam.class);
 
 
         boolean hasValidAnnotation = false;

@@ -3,21 +3,10 @@ package com.github.kongchen.swagger.docgen.jaxrs;
 import io.swagger.converter.ModelConverters;
 import io.swagger.jaxrs.ext.AbstractSwaggerExtension;
 import io.swagger.jaxrs.ext.SwaggerExtension;
-import io.swagger.models.parameters.CookieParameter;
-import io.swagger.models.parameters.FormParameter;
-import io.swagger.models.parameters.HeaderParameter;
-import io.swagger.models.parameters.Parameter;
-import io.swagger.models.parameters.PathParameter;
-import io.swagger.models.parameters.QueryParameter;
-import io.swagger.models.parameters.SerializableParameter;
+import io.swagger.models.parameters.*;
 import io.swagger.models.properties.Property;
 
-import javax.ws.rs.CookieParam;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -67,6 +56,24 @@ public class JaxrsParameterExtension extends AbstractSwaggerExtension implements
             if(schema != null)
                 qp.setProperty(schema);
             
+            String parameterType = qp.getType();
+            if (parameterType == null || parameterType.equals("ref")) {
+                qp.setType("string");
+            }
+            parameter = qp;
+        }
+        else if(annotation instanceof MatrixParam) {
+            MatrixParam param = (MatrixParam) annotation;
+            MatrixParameter qp = new MatrixParameter()
+                    .name(param.value());
+
+            if(!defaultValue.isEmpty()) {
+                qp.setDefaultValue(defaultValue);
+            }
+            Property schema = ModelConverters.getInstance().readAsProperty(type);
+            if(schema != null)
+                qp.setProperty(schema);
+
             String parameterType = qp.getType();
             if (parameterType == null || parameterType.equals("ref")) {
                 qp.setType("string");
