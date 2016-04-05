@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.kongchen</groupId>
     <artifactId>swagger-maven-plugin</artifactId>
-    <version>3.1.3</version>
+    <version>3.1.3.M</version>
     <packaging>maven-plugin</packaging>
     <name>Swagger Maven Plugin</name>
     <description>
@@ -51,7 +51,7 @@
         <maven.version>2.2.1</maven.version>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
         <java.version>1.6</java.version>
-        <swagger.version>1.5.8</swagger.version>
+        <swagger.version>1.5.8.M</swagger.version>
         <github.global.server>github</github.global.server>
     </properties>
 
